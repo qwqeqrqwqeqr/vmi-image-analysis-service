@@ -149,3 +149,4 @@ cython_debug/
 ./config/production.py
 
 ../.idea
+../.DS_Store
