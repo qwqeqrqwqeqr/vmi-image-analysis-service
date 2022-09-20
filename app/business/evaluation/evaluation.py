@@ -1,16 +1,16 @@
 # TODO 차후 모듈 확장시, param 'number' 제거
 
 # 이미지 유사도 측정과 규칙 전부 검사
-from ai.predict.util.predict_mapper import map_predict
-from ai.rule.util.rule_mapper import map_rule
+from analysis.predict.util.predict_mapper import map_predict
+from analysis.rule.util.rule_mapper import map_rule
+from config.develoment import IMAGE_URL
 from database.query.image import get_patient_image
 
 
 def evaluation(evaluation_code, number):
     image = get_patient_image(evaluation_code)
-    image_path = "http://106.245.10.197:2323/" + find_image_path(image, number)
-    # image 주소 변경
-    # image_path = "http://106.245.10.197:2323/crop_ans/S330_vmi_16.jpg"
+    image_path = IMAGE_URL + find_image_path(image, number)
+
 
     print(image_path)
     result, message = map_predict(number, image_path)
