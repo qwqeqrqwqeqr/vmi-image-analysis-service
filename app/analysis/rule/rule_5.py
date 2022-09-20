@@ -5,9 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from math import degrees
 
-from analysis.rule.util.message import RULE_5_MESSAGE
-
-success_message = "유사도 및 규칙을 충족합니다."
+from analysis.rule.util.message import RULE_5_MESSAGE, RULE_SUCCESS_MESSAGE
 
 
 def rule_5(img_path):
@@ -64,7 +62,7 @@ def rule_5(img_path):
 
     if score == 1:
         print("규칙을 충족합니다.")
-        return True, success_message
+        return True, RULE_SUCCESS_MESSAGE
     else:
         print(message)
         return False, message
