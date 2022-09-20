@@ -46,6 +46,11 @@ RULE_10_MESSAGE = {
     "INCORRECT_ANGLE_FROM_HORIZONTAL": "수평으로부터 20도 이상 벗어남",
     "INCORRECT_ANGLE_FROM_VERTICAL": "수직으로부터 20도 이상 벗어남",
 }
+RULE_11_MESSAGE = {
+    "NO_DETECT_SHAPE": "선이 검출되지 않음",
+    "OVER_ANGLE": "선의 각도가 크게 벗어나 있음",
+    "INCORRECT_ANGLE": "선의 각도가 110~160도를 벗어남",
+}
 
 RULE_16_MESSAGE = {
     "INCORRECT_DETECTING_CIRCLE": "원이 검출이 되지 않았거나 원이 여러개가 검출됨",
