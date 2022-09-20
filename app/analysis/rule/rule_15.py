@@ -8,10 +8,13 @@ from math import degrees
 from analysis.rule.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_15_MESSAGE, RULE_SUCCESS_MESSAGE
 
 
-def rule_15(img):
-    print(img)
-    image = cv2.imread(img)
-    image = removeNoise(image, c=100)
+def rule_15(img_path):
+
+    resp = urllib.request.urlopen(img_path)
+    img = np.asarray(bytearray(resp.read()), dtype='uint8')
+    img = cv2.imdecode(img, cv2.IMREAD_COLOR)
+
+    image = removeNoise(img, c=100)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     gray = np.float32(gray)
     dst = cv2.cornerHarris(gray, 20, 3, 0.04)
@@ -28,27 +31,25 @@ def rule_15(img):
         corner.append(int(corners[i, 0]))
         cornery.append(int(corners[i, 1]))
         cv2.circle(image, (int(corners[i, 0]), int(corners[i, 1])), 7, (0, 255, 0), 2)
-    plt.imshow(image)
-    plt.show()
 
     # print('number of corners:', len(corner))
     # print('number of sides:', len_sides(img))
 
-    if len(corner) == 3 and len_sides(img) == 3:
+    if len(corner) == 3 and len_sides(img_path) == 3:
         if validation_corner(corner, cornery):
             score = 1
             # message = "3개의 분명한 변이 존재, 코너 3개, 하나의 모서리가 다른 두 모서리보다 명백하게 높은 위치에 있음"
         else:
             score = 0
             message = RULE_15_MESSAGE["NO_TOP_CORNER"]
-    elif len(corner) < 5 and len_sides(img) == 3:
+    elif len(corner) < 5 and len_sides(img_path) == 3:
         if validation_corner(corner, cornery):
             score = 1
             # message = "3개의 분명한 변이 존재, 하나의 모서리가 다른 두 모서리보다 명백하게 높은 위치에 있음"
         else:
             score = 0
             message =  RULE_15_MESSAGE["NO_TOP_CORNER"]
-    elif len(corner) == 3 and len_sides(img) < 5:
+    elif len(corner) == 3 and len_sides(img_path) < 5:
         if validation_corner(corner, cornery):
             score = 1
             # message = "코너3개, 하나의 모서리가 다른 두 모서리보다 명백하게 높은 위치에 있음"

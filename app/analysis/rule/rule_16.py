@@ -5,12 +5,15 @@ import cv2
 import numpy as np
 from math import pi, sqrt, atan2, degrees
 
-from analysis.rule.util.message import RULE_16_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE
+from analysis.rule.util.constants import DEFAULT_SCORE
+from analysis.rule.util.message import RULE_16_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
+    RULE_DEFAULT_MESSAGE
 
 
 def rule_16(img_path):
-    score = 1
-    message = ""
+    score = DEFAULT_SCORE
+    message = RULE_DEFAULT_MESSAGE
+
     resp = urllib.request.urlopen(img_path)
     img = np.asarray(bytearray(resp.read()), dtype='uint8')
     img = cv2.imdecode(img, cv2.IMREAD_COLOR)

@@ -3,12 +3,14 @@ import urllib
 import cv2
 import numpy as np
 
-from analysis.rule.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_6_MESSAGE, RULE_SUCCESS_MESSAGE
+from analysis.rule.util.constants import DEFAULT_SCORE
+from analysis.rule.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_6_MESSAGE, RULE_SUCCESS_MESSAGE, \
+    RULE_DEFAULT_MESSAGE
 
 
 def rule_9(img_path):
-    score = 1
-    massage = ""
+    score = DEFAULT_SCORE
+    message = RULE_DEFAULT_MESSAGE
 
     resp = urllib.request.urlopen(img_path)
     img = np.asarray(bytearray(resp.read()), dtype='uint8')

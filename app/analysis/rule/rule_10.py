@@ -4,12 +4,14 @@ import cv2
 import numpy as np
 from math import pi, nan, isnan, degrees, sqrt, atan2
 
-from analysis.rule.util.message import RULE_10_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE
+from analysis.rule.util.constants import DEFAULT_SCORE
+from analysis.rule.util.message import RULE_10_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
+    RULE_DEFAULT_MESSAGE
 
 
 def rule_10(img_path):
-    score = 1
-    message = ""
+    score = DEFAULT_SCORE
+    message = RULE_DEFAULT_MESSAGE
 
     resp = urllib.request.urlopen(img_path)
     img = np.asarray(bytearray(resp.read()), dtype='uint8')

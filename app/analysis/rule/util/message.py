@@ -1,6 +1,6 @@
 RULE_PREDICT_SUCCESS_MESSAGE = "유사도 및 규칙을 충족합니다."
 RULE_SUCCESS_MESSAGE = "규칙을 충족합니다."
-
+RULE_DEFAULT_MESSAGE = ""
 
 
 RULE_4_MESSAGE = {

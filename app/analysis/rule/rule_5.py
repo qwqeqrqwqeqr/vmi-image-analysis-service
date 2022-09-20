@@ -5,12 +5,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from math import degrees
 
-from analysis.rule.util.message import RULE_5_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE
+from analysis.rule.util.constants import DEFAULT_SCORE
+from analysis.rule.util.message import RULE_5_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
+    RULE_DEFAULT_MESSAGE
 
 
 def rule_5(img_path):
-    score = 1
-    message = ""
+    score = DEFAULT_SCORE
+    message = RULE_DEFAULT_MESSAGE
 
     resp = urllib.request.urlopen(img_path)
     img = np.asarray(bytearray(resp.read()), dtype='uint8')
@@ -67,17 +69,3 @@ def rule_5(img_path):
         return False, message
 
 
-def drawLines(img, lines):
-    h, w = img.shape[:2]
-
-    if lines is not None:
-        for line in lines:
-            r, theta = line[0]  # 거리와 각도
-            tx, ty = np.cos(theta), np.sin(theta)  # x, y축에 대한 삼각비
-            x0, y0 = tx * r, ty * r  # x, y 기준(절편) 좌표
-            x1, y1 = int(x0 + w * (-ty)), int(y0 + h * tx)
-            x2, y2 = int(x0 - w * (-ty)), int(y0 - h * tx)
-
-            cv2.line(img, (x1, y1), (x2, y2), (0, 255, 0), 1)
-
-    return img
