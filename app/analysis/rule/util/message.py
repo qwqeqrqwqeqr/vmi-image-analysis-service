@@ -1,5 +1,3 @@
-
-
 RULE_PREDICT_SUCCESS_MESSAGE = "유사도 및 규칙을 충족합니다."
 
 
@@ -57,6 +55,12 @@ RULE_11_MESSAGE = {
     "NO_DETECT_SHAPE": "선이 검출되지 않음",
     "OVER_ANGLE": "선의 각도가 크게 벗어나 있음",
     "INCORRECT_ANGLE": "선의 각도가 110~160도를 벗어남",
+}
+
+RULE_12_MESSAGE = {
+    "DETECT_CORNER_LINE": "4개 분명한 변이 존재하거나 코너 4개",
+    "NO_DETECT_CORNER": "4개 분명한 변이 존재하지만 코너가 4개가 아님",
+    "NO_DETECT_CORNER_LINE": "4개의 변이 아님, 코너 4개 아님",
 }
 
 RULE_13_MESSAGE = {
