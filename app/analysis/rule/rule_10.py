@@ -4,7 +4,11 @@ import cv2
 import numpy as np
 from math import pi, nan, isnan, degrees, sqrt, atan2
 
+from analysis.rule.util.message import RULE_10_MESSAGE
+
 success_message = "유사도 및 규칙을 충족합니다."
+
+
 def rule_10(img_path):
     score = 1
     message = ""
@@ -12,7 +16,6 @@ def rule_10(img_path):
     resp = urllib.request.urlopen(img_path)
     img = np.asarray(bytearray(resp.read()), dtype='uint8')
     img = cv2.imdecode(img, cv2.IMREAD_COLOR)
-
 
     img = removeNoise(img, 20)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -25,16 +28,12 @@ def rule_10(img_path):
     one_object = np.zeros_like(img)  # 원본과 동일한 크기의 0으로만 채워진 이미지 생성
 
     if not contours:
-        message = "도형이 존재하지 않음"
+        message = RULE_10_MESSAGE['NO_FOUND_SHAPE']
         score = 0
     else:
         c = max(contours, key=cv2.contourArea)
         cv2.fillPoly(one_object, [c], (255, 255, 255))
-        # cv2.drawContours(one_object, [c], 0, (255,255,255), 1)
-        # one_object = cv2.morphologyEx(one_object, cv2.MORPH_CLOSE, kernel3, iterations=3)
-        # plt.title("target")
-        # plt.imshow(one_object)
-        # plt.show()
+
 
         one_object = cv2.copyMakeBorder(one_object, 10, 10, 10, 10, cv2.BORDER_CONSTANT, None, value=0)
         one_object_copy = one_object.copy()
@@ -42,7 +41,7 @@ def rule_10(img_path):
         one_object = cv2.cvtColor(one_object, cv2.COLOR_RGB2GRAY)
         corners = cv2.goodFeaturesToTrack(one_object, 100, 0.25, 20, blockSize=3, useHarrisDetector=True, k=0.03)
         if corners is None:
-            message = "도형 코너 검출 안됨"
+            message = RULE_10_MESSAGE['NO_DETECT_CORNER']
             score = 0
         else:
             for corner in corners:
@@ -53,12 +52,12 @@ def rule_10(img_path):
             # plt.imshow(one_object_copy)
             # plt.show()
             if len(corners) != 5:
-                message = "코너의 개수가 5개가 아님"
+                message =RULE_10_MESSAGE['INCORRECT_CORNER']
                 score = 0
             else:
                 points = findCenter(corners)
                 if points['center'] is None:
-                    message = "중심점을 찾을 수 없음"
+                    message = RULE_10_MESSAGE['NO_DETECT_CENTER_POINT']
                     score = 0
                 else:
                     cv2.circle(one_object_copy, tuple(points['center']), 3, (255, 0, 255), 2)
@@ -68,47 +67,45 @@ def rule_10(img_path):
 
                     length_left, degree_left = calculateLineFeatures(points['center'], points['left'])
                     if length_left < 10:
-                        message = "교차점에서부터 뻗어 나온 선분의 길이가 충분하지 않음"
+                        message = RULE_10_MESSAGE['NOT_ENOUGH_CROSS_POINT']
                         score = 0
                     elif degree_left > 20 or degree_left < -20:
-                        message = "수평으로부터 20도 이상 벗어남"
+                        message = RULE_10_MESSAGE['INCORRECT_ANGLE_FROM_HORIZONTAL']
                         score = 0
 
                     length_right, degree_right = calculateLineFeatures(points['center'], points['right'])
                     if length_right < 10:
-                        message = "교차점에서부터 뻗어 나온 선분의 길이가 충분하지 않음"
+                        message = RULE_10_MESSAGE['NOT_ENOUGH_CROSS_POINT']
                         score = 0
                     elif degree_right > 0 and degree_right < 160:
-                        message = "수평으로부터 20도 이상 벗어남"
+                        message = RULE_10_MESSAGE['INCORRECT_ANGLE_FROM_HORIZONTAL']
                         score = 0
                     elif degree_right < 0 and degree_right > -160:
-                        message = "수평으로부터 20도 이상 벗어남"
+                        message = RULE_10_MESSAGE['INCORRECT_ANGLE_FROM_HORIZONTAL']
                         score = 0
 
                     length_up, degree_up = calculateLineFeatures(points['center'], points['up'])
                     if degree_up < 10:
-                        message = "교차점에서부터 뻗어 나온 선분의 길이가 충분하지 않음"
+                        message = RULE_10_MESSAGE['NOT_ENOUGH_CROSS_POINT']
                         score = 0
                     elif degree_up < 70 or degree_up > 110:
-                        message = "수직으로부터 20도 이상 벗어남"
+                        message = RULE_10_MESSAGE['INCORRECT_ANGLE_FROM_VERTICAL']
                         score = 0
 
                     length_down, degree_down = calculateLineFeatures(points['center'], points['down'])
                     if length_down < 10:
-                        message = "교차점에서부터 뻗어 나온 선분의 길이가 충분하지 않음"
+                        message = RULE_10_MESSAGE['NOT_ENOUGH_CROSS_POINT']
                         score = 0
                     elif degree_down > -70 or degree_down < -110:
-                        message = "수직으로부터 20도 이상 벗어남"
+                        message = RULE_10_MESSAGE['INCORRECT_ANGLE_FROM_VERTICAL']
                         score = 0
-
 
     if score == 1:
         print("규칙을 충족합니다.")
-        return True , success_message
+        return True, success_message
     else:
         print(message)
-        return False , message
-
+        return False, message
 
 
 def removeNoise(img, c=50):
