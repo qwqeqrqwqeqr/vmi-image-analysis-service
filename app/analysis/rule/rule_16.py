@@ -5,6 +5,8 @@ import cv2
 import numpy as np
 from math import pi, sqrt, atan2, degrees
 
+from analysis.rule.util.message import RULE_16_MESSAGE
+
 success_message = "유사도 및 규칙을 충족합니다."
 
 def rule_16(img_path):
@@ -26,7 +28,7 @@ def rule_16(img_path):
     # print(circles)
 
     if circles is None or len(circles[0]) != 1:
-        message = "원이 검출이 되지 않았거나 원이 여러개가 검출됨"
+        message = RULE_16_MESSAGE["INCORRECT_DETECTING_CIRCLE"]
         score = 0
     else:
         circles = np.uint16(np.around(circles))
@@ -73,7 +75,7 @@ def rule_16(img_path):
             ratio = calculateRatio(diagonal, radius * 2)
             # print("ratio: ", ratio)
             if ratio >= 2:
-                message = "원과 사각형의 비율이 2:1 이내가 아님" + " (ratio: " + str(ratio) + ")"
+                message = RULE_16_MESSAGE["INCORRECT_RATIO"] + " (ratio: " + str(ratio) + ")"
                 score = 0
             else:
                 bisector, score, message = detectBisector(square_box, corners, center)
@@ -167,7 +169,7 @@ def detectOpenSquare(img):
     binary_padding = cv2.copyMakeBorder(binary, 10, 10, 10, 10, cv2.BORDER_CONSTANT, None, value=0)
     corners = cv2.goodFeaturesToTrack(binary_padding, 100, 0.3, 20, blockSize=3, useHarrisDetector=True, k=0.03)
     if corners is None:
-        message = "사각형 코너 검출 안 됨"
+        message = RULE_16_MESSAGE["NO_DETECT_ANGLE"]
         score = 0
     else:
         for corner in corners:
@@ -176,12 +178,12 @@ def detectOpenSquare(img):
             cv2.circle(square_corners, tuple(coordinate), 3, (0, 255, 255), 2)
 
         if len(corners) != 4:
-            message = "사각형 꼭짓점의 개수가 4개가 아님"
+            message = RULE_16_MESSAGE["INCORRECT_VERTEX"]
             score = 0
         else:
             possibility = haveSquarePossibility(img, corners)
             if possibility == 0:
-                message = "사각형이 뒤틀려 있음"
+                message = RULE_16_MESSAGE["TWISTED_RECTANGLE"]
                 score = 0
             else:
                 score = 1
@@ -285,7 +287,7 @@ def detectBisector(img, corners, center):
     if (bisector_degree > line2_degree) and (bisector_degree < line3_degree):
         score = 1
     else:
-        message = "열린 정사각형의 한각을 지나 원을 2등분하는 직선이 정사각형 안으로 들어가 있지 않음"
+        message = RULE_16_MESSAGE["INCORRECT_SHAPE"]
         score = 0
 
     return (img, score, message)

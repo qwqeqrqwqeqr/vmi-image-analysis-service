@@ -40,5 +40,10 @@ RULE_10_MESSAGE = {
 }
 
 RULE_16_MESSAGE = {
-
+    "INCORRECT_DETECTING_CIRCLE": "원이 검출이 되지 않았거나 원이 여러개가 검출됨",
+    "INCORRECT_RATIO": "원과 사각형의 비율이 2:1 이내가 아님",
+    "NO_DETECT_ANGLE": "사각형 코너 검출 안 됨",
+    "INCORRECT_VERTEX": "사각형 꼭짓점의 개수가 4개가 아님",
+    "TWISTED_RECTANGLE": "사각형이 뒤틀려 있음",
+    "INCORRECT_SHAPE": "열린 정사각형의 한각을 지나 원을 2등분하는 직선이 정사각형 안으로 들어가 있지 않음"
 }
