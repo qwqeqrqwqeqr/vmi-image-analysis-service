@@ -7,6 +7,18 @@ from analysis.rule.rule_16 import rule_16
 
 
 def map_rule(number, image_path):
+    if number == 4:
+           #4번 일 때
+        return  rule_4(image_path)
+    if number == 5:
+           #5번 일 때
+        return  rule_5(image_path)
+    if number == 7:
+           #7번 일 때
+        return  rule_7(image_path)
+    if number == 8:
+           #8번 일 때
+        return  rule_8(image_path)
     if number == 10:
            #10번 일 때
         return  rule_10(image_path)

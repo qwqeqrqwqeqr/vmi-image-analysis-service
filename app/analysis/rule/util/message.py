@@ -16,6 +16,10 @@ RULE_5_MESSAGE = {
     "MULTIPLE_LINES": "선이 여러개 있음",
     "INCORRECT_ANGLE": "수평선으로부터 30도 이상 벗어남"
 }
+RULE_6_MESSAGE = {
+    "INCORRECT_RATIO": "고리의 높이와 폭의 비율이 2:1보다 큼",
+    "NO_DETECT_CIRCLE": "원이 검출되지 않음",
+}
 RULE_7_MESSAGE = {
     "NO_DETECT_LINE": "선이 검출되지 않음",
     "NOISE": "이미지가 지저분 함",
@@ -27,6 +31,10 @@ RULE_8_MESSAGE = {
     "NOISE": "이미지가 지저분 함",
     "MULTIPLE_LINES": "선이 여러개 있음",
     "INCORRECT_ANGLE": "수평선으로부터 30도 이상 벗어남"
+}
+RULE_9_MESSAGE = {
+    "INCORRECT_RATIO": "고리의 높이와 폭의 비율이 2:1보다 큼",
+    "NO_DETECT_CIRCLE": "원이 검출되지 않음",
 }
 
 RULE_10_MESSAGE = {
