@@ -40,7 +40,7 @@ def rule_6(img_path):
 
 
     if score == 1:
-        print("규칙을 충족합니다.")
+        print(RULE_SUCCESS_MESSAGE)
         return True, RULE_PREDICT_SUCCESS_MESSAGE
     else:
         print(message)

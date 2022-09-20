@@ -3,7 +3,7 @@ import urllib
 import cv2
 import numpy as np
 
-from analysis.rule.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_6_MESSAGE
+from analysis.rule.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_6_MESSAGE, RULE_SUCCESS_MESSAGE
 
 
 def rule_9(img_path):
@@ -40,7 +40,7 @@ def rule_9(img_path):
 
 
     if score == 1:
-        print("규칙을 충족합니다.")
+        print(RULE_SUCCESS_MESSAGE)
         return True, RULE_PREDICT_SUCCESS_MESSAGE
     else:
         print(message)

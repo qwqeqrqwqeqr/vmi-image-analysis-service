@@ -5,8 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from math import degrees
 
-from analysis.rule.util.message import RULE_5_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE
-
+from analysis.rule.util.message import RULE_5_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE
 
 
 def rule_5(img_path):
@@ -21,7 +20,6 @@ def rule_5(img_path):
     edges = cv2.Canny(gray, 50, 150, apertureSize=3)
 
     lines = cv2.HoughLines(edges, 1, np.pi / 180, 50)
-
 
     if lines is None:
         message = RULE_5_MESSAGE["NO_DETECT_LINE"]
@@ -62,13 +60,11 @@ def rule_5(img_path):
                     score = 0
 
     if score == 1:
-        print("규칙을 충족합니다.")
+        print(RULE_SUCCESS_MESSAGE)
         return True, RULE_PREDICT_SUCCESS_MESSAGE
     else:
         print(message)
         return False, message
-
-
 
 
 def drawLines(img, lines):
@@ -76,17 +72,12 @@ def drawLines(img, lines):
 
     if lines is not None:
         for line in lines:
-            r ,theta = line[0]  # 거리와 각도
+            r, theta = line[0]  # 거리와 각도
             tx, ty = np.cos(theta), np.sin(theta)  # x, y축에 대한 삼각비
-            x0, y0 = tx *r, ty *r  # x, y 기준(절편) 좌표
-            x1, y1 = int(x0 + w* (-ty)), int(y0 + h * tx)
+            x0, y0 = tx * r, ty * r  # x, y 기준(절편) 좌표
+            x1, y1 = int(x0 + w * (-ty)), int(y0 + h * tx)
             x2, y2 = int(x0 - w * (-ty)), int(y0 - h * tx)
 
             cv2.line(img, (x1, y1), (x2, y2), (0, 255, 0), 1)
 
     return img
-
-
-
-
-

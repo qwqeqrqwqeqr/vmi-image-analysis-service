@@ -9,7 +9,8 @@ from tensorflow import keras
 fail_message = "유사도 미충족"
 success_message = "유사도 충족"
 
-def predict(image_path,model_path):
+
+def predict(image_path, model_path):
     img_size = 150
 
     try:

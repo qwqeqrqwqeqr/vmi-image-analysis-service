@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 from math import pi, sqrt, atan2, degrees
 
-from analysis.rule.util.message import RULE_16_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE
+from analysis.rule.util.message import RULE_16_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE
 
 
 def rule_16(img_path):
@@ -82,7 +82,7 @@ def rule_16(img_path):
 
 
     if score == 1:
-        print("규칙을 충족합니다.")
+        print(RULE_SUCCESS_MESSAGE)
         return True , RULE_PREDICT_SUCCESS_MESSAGE
     else:
         print(message)
