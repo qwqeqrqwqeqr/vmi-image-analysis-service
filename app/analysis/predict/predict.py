@@ -6,8 +6,6 @@ import numpy as np
 from keras.saving.save import load_model
 from tensorflow import keras
 
-fail_message = "유사도 미충족"
-success_message = "유사도 충족"
 
 
 def predict(image_path, model_path):

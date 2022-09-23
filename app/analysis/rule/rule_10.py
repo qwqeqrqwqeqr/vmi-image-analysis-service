@@ -34,7 +34,6 @@ def rule_10(img_path):
         c = max(contours, key=cv2.contourArea)
         cv2.fillPoly(one_object, [c], (255, 255, 255))
 
-
         one_object = cv2.copyMakeBorder(one_object, 10, 10, 10, 10, cv2.BORDER_CONSTANT, None, value=0)
         one_object_copy = one_object.copy()
 
@@ -57,7 +56,7 @@ def rule_10(img_path):
             else:
                 points = findCenter(corners)
                 if points['center'] is None:
-                    message = RULE_10_MESSAGE['NO_DETECT_CENTER_POINT']
+                    message = "중심점을 찾을 수 없음"
                     score = 0
                 else:
                     cv2.circle(one_object_copy, tuple(points['center']), 3, (255, 0, 255), 2)
