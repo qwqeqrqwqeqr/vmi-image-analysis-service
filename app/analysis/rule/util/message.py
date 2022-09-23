@@ -2,12 +2,11 @@ RULE_PREDICT_SUCCESS_MESSAGE = "유사도 및 규칙을 충족합니다."
 RULE_SUCCESS_MESSAGE = "규칙을 충족합니다."
 RULE_DEFAULT_MESSAGE = ""
 
-
 RULE_4_MESSAGE = {
     "NO_DETECT_LINE": "선이 검출되지 않음",
-    "NOISE" : "이미지가 지저분 함",
-    "MULTIPLE_LINES" : "선이 여러개 있음",
-    "INCORRECT_ANGLE" : "수직선으로부터 30도 이상 벗어남"
+    "NOISE": "이미지가 지저분 함",
+    "MULTIPLE_LINES": "선이 여러개 있음",
+    "INCORRECT_ANGLE": "수직선으로부터 30도 이상 벗어남"
 }
 
 RULE_5_MESSAGE = {
@@ -46,13 +45,13 @@ RULE_10_MESSAGE = {
     "NO_DETECT_CORNER": "도형 코너 검출 안됨",
     "INCORRECT_CORNER": "코너의 개수가 5개가 아님",
     "NO_DETECT_CENTER_POINT": "중심점을 찾을 수 없음",
-    "NOT_ENOUGH_CROSS_POINT" : "교차점에서부터 뻗어 나온 선분의 길이가 충분하지 않음",
+    "NOT_ENOUGH_CROSS_POINT": "교차점에서부터 뻗어 나온 선분의 길이가 충분하지 않음",
     "INCORRECT_ANGLE_FROM_HORIZONTAL": "수평으로부터 20도 이상 벗어남",
     "INCORRECT_ANGLE_FROM_VERTICAL": "수직으로부터 20도 이상 벗어남",
 }
 
 RULE_11_MESSAGE = {
-    "NO_DETECT_SHAPE": "선이 검출되지 않음",
+    "NO_DETECT_LINE": "선이 검출되지 않음",
     "OVER_ANGLE": "선의 각도가 크게 벗어나 있음",
     "INCORRECT_ANGLE": "선의 각도가 110~160도를 벗어남",
 }
@@ -63,16 +62,26 @@ RULE_12_MESSAGE = {
     "NO_DETECT_CORNER_LINE": "4개의 변이 아님, 코너 4개 아님",
 }
 
-
 RULE_13_MESSAGE = {
     "NO_DETECT_LINE": "선이 검출되지 않음",
     "OVER_ANGLE": "선의 각도가 크게 벗어나 있음",
     "INCORRECT_ANGLE": "선의 각도가 20~70도를 벗어남",
+    "NOT_ENOUGH_CROSS_POINT": "교차점에서부터 뻗어 나온 선분의 길이가 충분하지 않음",
+}
+
+RULE_14_MESSAGE = {
+    "NO_FOUND_SHAPE": "도형이 존재하지 않음",
+    "NO_DETECT_CORNER": "도형 코너 검출 안됨",
+    "INCORRECT_CORNER":"코너의 개수가 5개가 아님",
+    "NO_DETECT_CENTER_POINT":"중심점을 찾을 수 없음",
+    "NOT_ENOUGH_CROSS_POINT": "교차점에서부터 뻗어 나온 선분의 길이가 충분하지 않음",
+    "INCORRECT_ANGLE" :  "선의 각도가 20도에서 70도 사이, 110도에서 160도 사이를 벗어남",
+    "INCORRECT_LENGTH" : "4개의 발 중 가장 긴 것이 가장 짧은 것의 2배를 넘음"
 }
 
 RULE_15_MESSAGE = {
-  "NO_TOP_CORNER": "하나의 모서리가 다른 두 모서리보다 명백하게 높은 위치에 없음",
-  "NO_DETECT_CORNER_LINE": "3개의 분명한 변이 없고 코너 3개 없음",
+    "NO_TOP_CORNER": "하나의 모서리가 다른 두 모서리보다 명백하게 높은 위치에 없음",
+    "NO_DETECT_CORNER_LINE": "3개의 분명한 변이 없고 코너 3개 없음",
 
 }
 

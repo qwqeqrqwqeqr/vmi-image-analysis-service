@@ -5,8 +5,8 @@ import numpy as np
 from math import degrees
 
 from analysis.rule.util.constants import DEFAULT_SCORE
-from analysis.rule.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_10_MESSAGE, RULE_SUCCESS_MESSAGE, \
-    RULE_DEFAULT_MESSAGE
+from analysis.rule.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
+    RULE_DEFAULT_MESSAGE, RULE_11_MESSAGE
 
 
 def rule_11(img_path):
@@ -24,7 +24,7 @@ def rule_11(img_path):
 
 
     if lines is None:
-        message = RULE_10_MESSAGE["NO_DETECT_SHAPE"]
+        message = RULE_11_MESSAGE["NO_DETECT_SHAPE"]
         score = 0
     else:
         positive = []
@@ -38,12 +38,12 @@ def rule_11(img_path):
                 positive.append(degree)
 
         if len(positive) > 0:
-            message = RULE_10_MESSAGE["OVER_ANGLE"]
+            message = RULE_11_MESSAGE["OVER_ANGLE"]
             score = 0
         else:
             negative_mean = np.mean(negative)
             if negative_mean <= -70 or negative_mean >= -20:
-                message = RULE_10_MESSAGE["INCORRECT_ANGLE"]
+                message = RULE_11_MESSAGE["INCORRECT_ANGLE"]
                 score = 0
 
     if score == 1:
