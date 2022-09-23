@@ -1,4 +1,4 @@
-
+from analysis.rule.rule_14 import rule_14
 from analysis.rule.rule_4 import rule_4
 from analysis.rule.rule_5 import rule_5
 from analysis.rule.rule_6 import rule_6
@@ -22,7 +22,7 @@ def map_rule(number, image_path):
         # 5번 일 때
         return rule_5(image_path)
     if number == 6:
-        # 5번 일 때
+        # 6번 일 때
         return rule_6(image_path)
     if number == 7:
         # 7번 일 때
@@ -31,22 +31,25 @@ def map_rule(number, image_path):
         # 8번 일 때
         return rule_8(image_path)
     if number == 9:
-        # 5번 일 때
+        # 9번 일 때
         return rule_9(image_path)
     if number == 10:
         # 10번 일 때
         return rule_10(image_path)
     if number == 11:
-        # 5번 일 때
+        # 11번 일 때
         return rule_11(image_path)
     if number == 12:
-        # 5번 일 때
+        # 12번 일 때
         return rule_12(image_path)
     if number == 13:
-        # 5번 일 때
+        # 13번 일 때
         return rule_13(image_path)
+    if number == 14:
+        # 14번 일 때
+        return rule_14(image_path)
     if number == 15:
-        # 5번 일 때
+        # 15번 일 때
         return rule_15(image_path)
     else:  # 16번 일 때
         return rule_16(image_path)

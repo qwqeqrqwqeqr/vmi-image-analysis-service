@@ -6,6 +6,7 @@ import numpy as np
 from keras.saving.save import load_model
 from tensorflow import keras
 
+from analysis.predict.util.message import PREDICT_FAIL_MESSAGE, PREDICT_SUCCESS_MESSAGE
 
 
 def predict(image_path, model_path):
@@ -29,8 +30,8 @@ def predict(image_path, model_path):
 
     print(predict_val)
     if predict_val < 0.7:
-        print(fail_message)
-        return False, fail_message
+        print(PREDICT_FAIL_MESSAGE)
+        return False, PREDICT_FAIL_MESSAGE
     else:
-        print(success_message)
-        return True, success_message
+        print(PREDICT_SUCCESS_MESSAGE)
+        return True, PREDICT_SUCCESS_MESSAGE
