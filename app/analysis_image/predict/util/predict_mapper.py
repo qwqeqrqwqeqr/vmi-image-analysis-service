@@ -1,4 +1,3 @@
-from analysis.predict.predict import predict
 
 
 def map_predict(number, image_path):

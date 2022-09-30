@@ -5,8 +5,8 @@ import cv2
 import numpy as np
 from math import pi, sqrt, atan2, degrees
 
-from analysis.rule.util.constants import DEFAULT_SCORE
-from analysis.rule.util.message import RULE_16_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
+from analysis_image.analysis.util.constants import DEFAULT_SCORE
+from analysis_image.analysis.util.message import RULE_16_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
     RULE_DEFAULT_MESSAGE
 
 

@@ -7,8 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from math import degrees
 
-from analysis.rule.util.constants import DEFAULT_SCORE
-from analysis.rule.util.message import RULE_7_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
+from analysis_image.analysis.util.constants import DEFAULT_SCORE
+from analysis_image.analysis.util.message import RULE_7_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
     RULE_DEFAULT_MESSAGE
 
 
@@ -19,6 +19,8 @@ def rule_7(img_path):
     resp = urllib.request.urlopen(img_path)
     img = np.asarray(bytearray(resp.read()), dtype='uint8')
     img = cv2.imdecode(img, cv2.IMREAD_COLOR)
+
+
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     edges = cv2.Canny(gray, 50, 150, apertureSize=3)

@@ -5,12 +5,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from math import degrees
 
-from analysis.rule.util.constants import DEFAULT_SCORE
-from analysis.rule.util.message import RULE_8_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
+from analysis_image.analysis.util.constants import DEFAULT_SCORE
+from analysis_image.analysis.util.message import RULE_5_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
     RULE_DEFAULT_MESSAGE
 
 
-def rule_8(img_path):
+def rule_5(img_path):
     score = DEFAULT_SCORE
     message = RULE_DEFAULT_MESSAGE
 
@@ -18,13 +18,15 @@ def rule_8(img_path):
     img = np.asarray(bytearray(resp.read()), dtype='uint8')
     img = cv2.imdecode(img, cv2.IMREAD_COLOR)
 
+
+
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     edges = cv2.Canny(gray, 50, 150, apertureSize=3)
 
     lines = cv2.HoughLines(edges, 1, np.pi / 180, 50)
 
     if lines is None:
-        message = RULE_8_MESSAGE["NO_DETECT_LINE"]
+        message = RULE_5_MESSAGE["NO_DETECT_LINE"]
         score = 0
     else:
         positive = []
@@ -39,7 +41,7 @@ def rule_8(img_path):
         degree_all = positive + negative
 
         if len(degree_all) > 20:
-            message = RULE_8_MESSAGE["NOISE"]
+            message = RULE_5_MESSAGE["NOISE"]
             score = 0
         else:
             positive_mean = np.mean(positive)
@@ -49,7 +51,7 @@ def rule_8(img_path):
             diff = positive_diff + negative_diff
 
             if diff > 10:
-                message = RULE_8_MESSAGE["MULTIPLE_LINES"]
+                message = RULE_5_MESSAGE["MULTIPLE_LINES"]
                 score = 0
             else:
                 negative_abs = []
@@ -58,7 +60,7 @@ def rule_8(img_path):
                 degree_all = positive + negative_abs
 
                 if np.mean(degree_all) >= 30:
-                    message = RULE_8_MESSAGE["INCORRECT_ANGLE"]
+                    message = RULE_5_MESSAGE["INCORRECT_ANGLE"]
                     score = 0
 
     if score == 1:
@@ -67,9 +69,5 @@ def rule_8(img_path):
     else:
         print(message)
         return False, message
-
-
-
-
 
 

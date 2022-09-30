@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from math import degrees
 
-from analysis.rule.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_15_MESSAGE, RULE_SUCCESS_MESSAGE
+from analysis_image.analysis.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_15_MESSAGE, RULE_SUCCESS_MESSAGE
 
 
 def rule_15(img_path):
@@ -32,8 +32,7 @@ def rule_15(img_path):
         cornery.append(int(corners[i, 1]))
         cv2.circle(image, (int(corners[i, 0]), int(corners[i, 1])), 7, (0, 255, 0), 2)
 
-    # print('number of corners:', len(corner))
-    # print('number of sides:', len_sides(img))
+
 
     if len(corner) == 3 and len_sides(img_path) == 3:
         if validation_corner(corner, cornery):
@@ -84,8 +83,12 @@ def removeNoise(img, k=3, c=50):
     return img
 
 
-def len_sides(img):
-    img = cv2.imread(img)
+def len_sides(img_path):
+
+    resp = urllib.request.urlopen(img_path)
+    img = np.asarray(bytearray(resp.read()), dtype='uint8')
+    img = cv2.imdecode(img, cv2.IMREAD_COLOR)
+
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
     # Find contours and perform contour approximation

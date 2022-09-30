@@ -3,18 +3,20 @@ import urllib
 import cv2
 import numpy as np
 
-from analysis.rule.util.constants import DEFAULT_SCORE
-from analysis.rule.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_6_MESSAGE, RULE_SUCCESS_MESSAGE, \
+from analysis_image.analysis.util.constants import DEFAULT_SCORE
+from analysis_image.analysis.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_6_MESSAGE, RULE_SUCCESS_MESSAGE, \
     RULE_DEFAULT_MESSAGE
 
 
-def rule_9(img_path):
+def rule_6(img_path):
     score = DEFAULT_SCORE
     message = RULE_DEFAULT_MESSAGE
 
     resp = urllib.request.urlopen(img_path)
     img = np.asarray(bytearray(resp.read()), dtype='uint8')
     img = cv2.imdecode(img, cv2.IMREAD_COLOR)
+
+    img_copy = img.copy()
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY_INV)[1]
