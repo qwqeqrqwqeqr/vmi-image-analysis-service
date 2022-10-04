@@ -1,5 +1,5 @@
 from database.database import Database
-from database.model.score import Score
+from model.score import Score
 from database.query.util import check_score_list_length
 
 

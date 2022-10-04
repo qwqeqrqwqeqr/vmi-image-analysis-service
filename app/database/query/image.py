@@ -1,6 +1,5 @@
 from database.database import Database
-from database.model.image import Image
-from database.model.score import Score
+from model.image import Image
 from database.query.util import set_image_dir_list
 
 

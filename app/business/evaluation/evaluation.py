@@ -20,13 +20,8 @@ def evaluation(evaluation_code):
     #     return 0, message
 
     result, message = analysis(image)
+    calculate_total()
     return result, message
 
 
 
-# TODO 2022-09-30
-# TODO 1. input -> evaluation code  (
-# TODO 2. 문항별 각기 다른 학습 및 로직 적용 (mapping)
-# TODO 3. 문항별 학습 및 분석 시작 (병렬 처리?)
-# TODO 4. 문항별 학습 결과 (message,score) concat 하기
-# TODO 5. output -> score list from to analysis_image

@@ -94,6 +94,7 @@ def len_sides(img_path):
     # Find contours and perform contour approximation
     cnts = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+    hull = ""
     for cnt in cnts:
         hull = cv2.convexHull(cnt)  # convex hull of contour
         hull = cv2.approxPolyDP(hull, 0.1 * cv2.arcLength(hull, True), True)

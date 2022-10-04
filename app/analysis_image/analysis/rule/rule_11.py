@@ -24,7 +24,7 @@ def rule_11(img_path):
 
 
     if lines is None:
-        message = RULE_11_MESSAGE["NO_DETECT_SHAPE"]
+        message = RULE_11_MESSAGE["NO_DETECT_LINE"]
         score = 0
     else:
         positive = []
