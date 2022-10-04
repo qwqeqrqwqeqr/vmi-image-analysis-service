@@ -1,12 +1,10 @@
-import os
 import urllib
 
 import cv2
 import numpy as np
-from keras.saving.save import load_model
 from tensorflow import keras
 
-from analysis.predict.util.message import PREDICT_FAIL_MESSAGE, PREDICT_SUCCESS_MESSAGE
+from business.analysis_image.predict.util.message import PREDICT_FAIL_MESSAGE, PREDICT_SUCCESS_MESSAGE
 
 
 def predict(image_path, model_path):

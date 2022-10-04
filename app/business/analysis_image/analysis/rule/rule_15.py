@@ -2,10 +2,8 @@ import urllib
 
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-from math import degrees
 
-from analysis_image.analysis.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_15_MESSAGE, RULE_SUCCESS_MESSAGE
+from business.analysis_image.analysis.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_15_MESSAGE, RULE_SUCCESS_MESSAGE
 
 
 def rule_15(img_path):

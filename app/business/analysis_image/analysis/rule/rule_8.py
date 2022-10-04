@@ -1,17 +1,15 @@
-# 요구사항:
-# 1. 선의 1/2 이상이 수직선으로부터 30도 이상 벗어나지 않을 것
 import urllib
 
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 from math import degrees
 
-from analysis_image.analysis.util.constants import DEFAULT_SCORE
-from analysis_image.analysis.util.message import RULE_4_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_DEFAULT_MESSAGE
+from business.analysis_image.analysis.util.constants import DEFAULT_SCORE
+from business.analysis_image.analysis.util.message import RULE_8_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
+    RULE_DEFAULT_MESSAGE
 
 
-def rule_4(img_path):
+def rule_8(img_path):
     score = DEFAULT_SCORE
     message = RULE_DEFAULT_MESSAGE
 
@@ -27,7 +25,7 @@ def rule_4(img_path):
     lines = cv2.HoughLines(edges, 1, np.pi / 180, 50)
 
     if lines is None:
-        message = RULE_4_MESSAGE["NO_DETECT_LINE"]
+        message = RULE_8_MESSAGE["NO_DETECT_LINE"]
         score = 0
     else:
         positive = []
@@ -42,17 +40,17 @@ def rule_4(img_path):
         degree_all = positive + negative
 
         if len(degree_all) > 20:
-            message =  RULE_4_MESSAGE["NOISE"]
+            message = RULE_8_MESSAGE["NOISE"]
             score = 0
         else:
             positive_mean = np.mean(positive)
             negative_mean = np.mean(negative)
-            positive_diff = 90 - positive_mean
-            negative_diff = 90 - abs(negative_mean)
+            positive_diff = positive_mean - 0
+            negative_diff = abs(negative_mean) - 0
             diff = positive_diff + negative_diff
 
             if diff > 10:
-                message = RULE_4_MESSAGE["MULTIPLE_LINES"]
+                message = RULE_8_MESSAGE["MULTIPLE_LINES"]
                 score = 0
             else:
                 negative_abs = []
@@ -60,13 +58,19 @@ def rule_4(img_path):
                     negative_abs.append(abs(degree))
                 degree_all = positive + negative_abs
 
-                if np.mean(degree_all) <= 60:
-                    message = RULE_4_MESSAGE["INCORRECT_ANGLE"]
+                if np.mean(degree_all) >= 30:
+                    message = RULE_8_MESSAGE["INCORRECT_ANGLE"]
                     score = 0
 
     if score == 1:
+        print(RULE_SUCCESS_MESSAGE)
         return True, RULE_PREDICT_SUCCESS_MESSAGE
     else:
         print(message)
         return False, message
+
+
+
+
+
 

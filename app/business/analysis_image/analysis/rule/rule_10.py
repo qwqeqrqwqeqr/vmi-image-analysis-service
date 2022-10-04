@@ -2,10 +2,10 @@ import urllib
 
 import cv2
 import numpy as np
-from math import pi, nan, isnan, degrees, sqrt, atan2
+from math import degrees, sqrt, atan2
 
-from analysis_image.analysis.util.constants import DEFAULT_SCORE
-from analysis_image.analysis.util.message import RULE_10_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
+from business.analysis_image.analysis.util.constants import DEFAULT_SCORE
+from business.analysis_image.analysis.util.message import RULE_10_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
     RULE_DEFAULT_MESSAGE
 
 
