@@ -3,8 +3,8 @@ import urllib
 import cv2
 import numpy as np
 
-from business.analysis_image.analysis.util.constants import DEFAULT_SCORE
-from business.analysis_image.analysis.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_6_MESSAGE, RULE_SUCCESS_MESSAGE, \
+from business.analysis_image.util.constants import DEFAULT_SCORE
+from business.analysis_image.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_6_MESSAGE, RULE_SUCCESS_MESSAGE, \
     RULE_DEFAULT_MESSAGE
 
 

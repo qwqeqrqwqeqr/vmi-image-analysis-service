@@ -6,12 +6,12 @@ from model.api_response import APIResponse
 
 blue_print = Blueprint("analysis", __name__, url_prefix="/analysis")
 
+
 @blue_print.route("/image", methods=["POST"])
 def question():
     if request.method == 'POST':
         params = request.get_json()
 
-        result,message = evaluation(params['evaluationCode'])
+        result = evaluation(params['evaluationCode'])
 
-        return jsonify(APIResponse("success","200", message, result))
-
+        return jsonify(APIResponse("success", "200", message, result))

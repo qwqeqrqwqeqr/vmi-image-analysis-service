@@ -1,13 +1,5 @@
-import urllib
 
-import cv2
-import numpy as np
-from tensorflow import keras
-
-from business.analysis_image.predict.util.message import PREDICT_FAIL_MESSAGE, PREDICT_SUCCESS_MESSAGE
-
-
-def predict(image_path, model_path):
+def predict_image(image_path, model_path):
     img_size = 150
 
     try:

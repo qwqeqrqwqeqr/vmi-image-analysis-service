@@ -6,8 +6,8 @@ import cv2
 import numpy as np
 from math import degrees
 
-from business.analysis_image.analysis.util.constants import DEFAULT_SCORE
-from business.analysis_image.analysis.util.message import RULE_4_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_DEFAULT_MESSAGE
+from business.analysis_image.util.constants import DEFAULT_SCORE
+from business.analysis_image.util.message import RULE_4_MESSAGE, RULE_PREDICT_SUCCESS_MESSAGE, RULE_DEFAULT_MESSAGE
 
 
 def rule_4(img_path):

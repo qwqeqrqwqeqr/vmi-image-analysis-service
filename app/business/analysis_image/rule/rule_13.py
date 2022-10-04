@@ -1,15 +1,20 @@
+# 요구사항:
+# 1. 하나의 선일 것 (추가로 그린 것도 가능)
+# 2. 선의 1/2 이상이 20~70도 사이에 있을 것
+# 3. 갑작스런 방향 변화가 없을 것
+
 import urllib
 
 import cv2
 import numpy as np
 from math import degrees
 
-from business.analysis_image.analysis.util.constants import DEFAULT_SCORE
-from business.analysis_image.analysis.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_SUCCESS_MESSAGE, \
-    RULE_DEFAULT_MESSAGE, RULE_11_MESSAGE
+from business.analysis_image.util.constants import DEFAULT_SCORE
+from business.analysis_image.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_13_MESSAGE, RULE_SUCCESS_MESSAGE, \
+    RULE_DEFAULT_MESSAGE
 
 
-def rule_11(img_path):
+def rule_13(img_path):
     score = DEFAULT_SCORE
     message = RULE_DEFAULT_MESSAGE
 
@@ -24,7 +29,7 @@ def rule_11(img_path):
 
 
     if lines is None:
-        message = RULE_11_MESSAGE["NO_DETECT_LINE"]
+        message = RULE_13_MESSAGE["NO_DETECT_LINE"]
         score = 0
     else:
         positive = []
@@ -37,13 +42,13 @@ def rule_11(img_path):
             else:
                 positive.append(degree)
 
-        if len(positive) > 0:
-            message = RULE_11_MESSAGE["OVER_ANGLE"]
+        if len(negative) > 0:
+            message = RULE_13_MESSAGE["OVER_ANGLE"]
             score = 0
         else:
-            negative_mean = np.mean(negative)
-            if negative_mean <= -70 or negative_mean >= -20:
-                message = RULE_11_MESSAGE["INCORRECT_ANGLE"]
+            positive_mean = np.mean(positive)
+            if positive_mean <= 20 or positive_mean >= 70:
+                message = RULE_13_MESSAGE["INCORRECT_ANGLE"]
                 score = 0
 
     if score == 1:
@@ -52,6 +57,14 @@ def rule_11(img_path):
     else:
         print(message)
         return False, message
+
+
+
+
+
+
+
+
 
 
 

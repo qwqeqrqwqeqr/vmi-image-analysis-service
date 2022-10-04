@@ -3,7 +3,7 @@ import urllib
 import cv2
 import numpy as np
 
-from business.analysis_image.analysis.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_15_MESSAGE, RULE_SUCCESS_MESSAGE
+from business.analysis_image.util.message import RULE_PREDICT_SUCCESS_MESSAGE, RULE_15_MESSAGE, RULE_SUCCESS_MESSAGE
 
 
 def rule_15(img_path):
