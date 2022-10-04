@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class Score:
     evaluation_code: int
@@ -35,26 +36,12 @@ class Score:
     def __init__(self, evaluation_code, score_list):
         self.set_evaluation_code(evaluation_code)
         self.set_score(score_list)
-        self.set_total()
 
     def set_evaluation_code(self, evaluation_code):
         self.evaluation_code = evaluation_code
 
-    def set_total(self):
-        self.total = self.q_4 + self.q_5 + \
-                     self.q_6 + self.q_7 + \
-                     self.q_8 + self.q_9 + \
-                     self.q_10 + self.q_11 + \
-                     self.q_12 + self.q_13 + \
-                     self.q_14 + self.q_15 + \
-                     self.q_16 + self.q_17 + \
-                     self.q_18 + self.q_19 + \
-                     self.q_20 + self.q_21 + \
-                     self.q_22 + self.q_23 + \
-                     self.q_24 + self.q_25 + \
-                     self.q_26 + self.q_27 + \
-                     self.q_28 + self.q_29 + \
-                     self.q_30
+    def set_total(self, total):
+        self.total = total
 
     def set_score(self, score_list):
         self.q_4 = score_list[0]
@@ -84,3 +71,8 @@ class Score:
         self.q_28 = score_list[24]
         self.q_29 = score_list[25]
         self.q_30 = score_list[26]
+
+    def get_score_list(self):
+        return [self.q_4, self.q_5, self.q_6, self.q_7, self.q_8, self.q_9, self.q_10, self.q_11, self.q_12,
+                self.q_13, self.q_14, self.q_15, self.q_16, self.q_17, self.q_18, self.q_19, self.q_20, self.q_21,
+                self.q_22, self.q_23, self.q_24, self.q_25, self.q_26, self.q_27, self.q_28, self.q_29, self.q_30]
