@@ -29,7 +29,7 @@ def predict(image_path, model_path):
     print(predict_val)
     if predict_val < 0.7:
         print(PREDICT_FAIL_MESSAGE)
-        return False, PREDICT_FAIL_MESSAGE
+        return 0, PREDICT_FAIL_MESSAGE
     else:
         print(PREDICT_SUCCESS_MESSAGE)
-        return True, PREDICT_SUCCESS_MESSAGE
+        return 1, PREDICT_SUCCESS_MESSAGE

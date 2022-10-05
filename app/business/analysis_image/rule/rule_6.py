@@ -39,17 +39,12 @@ def rule_6(img_path):
                     score = 0
 
     if is_ellipse == 0:
-        message =  RULE_6_MESSAGE["NO_DETECT_CIRCLE"]
+        message = RULE_6_MESSAGE["NO_DETECT_CIRCLE"]
         score = 0
-
 
     if score == 1:
         print(RULE_SUCCESS_MESSAGE)
-        return True, RULE_PREDICT_SUCCESS_MESSAGE
+        return 1, RULE_PREDICT_SUCCESS_MESSAGE
     else:
         print(message)
-        return False, message
-
-
-
-
+        return 0, message

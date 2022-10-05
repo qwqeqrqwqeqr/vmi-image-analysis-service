@@ -14,4 +14,5 @@ def question():
 
         result = evaluation(params['evaluationCode'])
 
-        return jsonify(APIResponse("success", "200", message, result))
+
+        return jsonify(APIResponse("success", "200", result[1], result[0]))

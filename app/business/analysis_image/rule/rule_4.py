@@ -64,8 +64,8 @@ def rule_4(img_path):
                     score = 0
 
     if score == 1:
-        return True, RULE_PREDICT_SUCCESS_MESSAGE
+        return 1, RULE_PREDICT_SUCCESS_MESSAGE
     else:
         print(message)
-        return False, message
+        return 0, message
 

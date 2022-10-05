@@ -13,7 +13,7 @@ from business.analysis_image.rule.rule_8 import rule_8
 from business.analysis_image.rule.rule_9 import rule_9
 from model.evaluation import Evaluation
 
-
+#TODO 유사도를 충족한 문제들만 규칙을 검사한다.
 def analysis_image(image, evaluation_list):
     evaluation_list[4] = map_result(4, rule_4(image.a_4))
     evaluation_list[5] = map_result(5, rule_5(image.a_5))

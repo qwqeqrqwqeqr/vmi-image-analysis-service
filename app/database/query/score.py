@@ -6,12 +6,11 @@ from database.query.util import check_score_list_length
 # evaluation_code에 맞는 환자의 점수를 업데이트 합니다.
 
 
-def update_patient_score(eval_code, score_list):
-    if not check_score_list_length(score_list):
+def update_patient_score(score):
+    if not check_score_list_length(score.get_score_list()):
         return False
 
     database = Database()
-    score = Score(eval_code, score_list)
 
     query = f"""
     REPLACE INTO {'ai_eval_vmi'} (
