@@ -14,7 +14,7 @@ from business.analysis_image.rule.rule_9 import rule_9
 from model.evaluation import Evaluation
 
 
-def analysis(image, evaluation_list):
+def analysis_image(image, evaluation_list):
     evaluation_list[4] = map_result(4, rule_4(image.a_4))
     evaluation_list[5] = map_result(5, rule_5(image.a_5))
     evaluation_list[6] = map_result(6, rule_6(image.a_6))

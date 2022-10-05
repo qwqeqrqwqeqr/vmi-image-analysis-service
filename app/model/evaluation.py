@@ -3,11 +3,11 @@ import dataclasses
 
 class Evaluation:
     number: int
-    status: bool
+    score: int
     message: str
 
-    def __init__(self, number, status, message):
+    def __init__(self, number, score, message):
         self.number = number
-        self.status = status
+        self.score = score
         self.message = message
 

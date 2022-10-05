@@ -1,4 +1,4 @@
-from business.calculate_total.constants import MAX_LENGTH
+from business.calculate_total.util.constants import MAX_LENGTH
 
 
 def calculate_total(score):
