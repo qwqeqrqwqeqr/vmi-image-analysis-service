@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 
-from business.evaluation.evaluation import evaluation
+from business.evaluate_image.evaluate_image import evaluation
 
 from model.api_response import APIResponse
 
@@ -8,11 +8,13 @@ blue_print = Blueprint("analysis", __name__, url_prefix="/analysis")
 
 
 @blue_print.route("/image", methods=["POST"])
-def question():
+def analysis_image():
     if request.method == 'POST':
         params = request.get_json()
+        result = []
+        evaluationCodeList = params['evaluationCodeList']
 
-        result = evaluation(params['evaluationCode'])
+        for evaluationCode in evaluationCodeList:
+            result.append({'evaluationCode': evaluationCode, 'score': evaluation(evaluationCode)[0]})
 
-
-        return jsonify(APIResponse("success", "200", result[1], result[0]))
+        return jsonify(APIResponse("success", "200", "AI 이미지 분석을 완료 하였습니다.", result))

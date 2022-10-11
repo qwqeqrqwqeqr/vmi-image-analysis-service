@@ -1,7 +1,6 @@
 # 이미지 유사도 측정과 규칙 전부 검사
 from business.analysis_image.analysis_image import analysis_image
-from business.calculate_total.calculate_total import calculate_total
-from business.evaluation.util.init_list import init_evaluation_list, init_score_list
+from business.evaluate_image.util.init_list import init_evaluation_list, init_score_list
 from business.predict_image.predict_image import predict_image
 from database.query.image import get_patient_image
 from database.query.score import update_patient_score
@@ -20,11 +19,15 @@ def evaluation(evaluation_code):
     image = get_patient_image(evaluation_code)
 
     evaluation_list = evaluation_image_list(image)
+
+    # 채점 결과를 반영한 scorelist 만들기
     score_list = init_score_list(evaluation_code, evaluation_list)
+
+    # DB에 점수 넣기
     if update_patient_score(score_list):
-        message = "AI 이미지 분석을 완료 하였습니다."
+        message = "분석을 완료 하였습니다."
     else:
-        message = "AI 이미지 분석을 실패 하였습니다."
+        message = "분석을 실패 하였습니다."
 
     return map_image_analysis_response_dto(evaluation_list), message
 

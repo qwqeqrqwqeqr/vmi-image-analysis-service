@@ -56,7 +56,7 @@ def rule_10(img_path):
             else:
                 points = findCenter(corners)
                 if points['center'] is None:
-                    message = "중심점을 찾을 수 없음"
+                    message = RULE_10_MESSAGE['NO_DETECT_CENTER_POINT']
                     score = 0
                 else:
                     cv2.circle(one_object_copy, tuple(points['center']), 3, (255, 0, 255), 2)

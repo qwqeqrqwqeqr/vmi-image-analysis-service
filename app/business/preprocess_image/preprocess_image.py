@@ -13,6 +13,8 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+from config.develoment import IMAGE_URL
+
 
 def showImageWithHistogram(img, title=""):
     plt.subplot(1,2,1)
@@ -207,9 +209,11 @@ def whitenImages(input_path, output_path):
         cv2.rectangle(preprocessing, (w-10, h-10), (w, h), (255,255,255), -1)
 
         preprocessing = removeNoise(preprocessing, c=80, k=7)
-    #     plt.title("preprocessing")
-    #     plt.imshow(preprocessing, cmap="gray")
+    #     plt.title("preprocess_image")
+    #     plt.imshow(preprocess_image, cmap="gray")
     #     plt.show()
+
+
 
         cv2.imwrite(output_path + name, preprocessing)
         print(str(num) + "   " + name + "   " + "finish")

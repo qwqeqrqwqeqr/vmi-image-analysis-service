@@ -1,12 +1,14 @@
 from flask import Flask
 
-from router import analysis, base
+from router import analysis, base, predict
 
 app = Flask(__name__)
 
 
 app.register_blueprint(analysis.blue_print)
+app.register_blueprint(predict.blue_print)
 app.register_blueprint(base.blue_print)
+
 
 
 

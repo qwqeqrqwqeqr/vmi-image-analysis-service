@@ -16,28 +16,40 @@ from model.evaluation import Evaluation
 '''
     유사도가 예측을 통과한 이미지들(1점) 만 규칙검사를 진행합니다.
 '''
-def analysis_image(image, evaluation_list: list[Evaluation]):
-    for i in range(4, 17):
-        if evaluation_list[i].score == 1:
-            evaluation_list[i] = map_result(i, select_image(i, image))
-    return evaluation_list
 
+
+def analysis_image(image, evaluation_list: list[Evaluation]):
+    for i in range(0, 12):
+        if evaluation_list[i].score == 1:
+            evaluation_list[i] = map_result(i+4, select_image(i+4, image))
+    return evaluation_list
 
 def map_result(number, result):
     return Evaluation(number, result[0], result[1])
 
 
 def select_image(number, image):
-    return {4: rule_4(image.a_4),
-            5: rule_5(image.a_5),
-            6: rule_6(image.a_6),
-            7: rule_7(image.a_7),
-            8: rule_8(image.a_8),
-            9: rule_9(image.a_9),
-            10: rule_10(image.a_10),
-            11: rule_11(image.a_11),
-            12: rule_12(image.a_12),
-            13: rule_13(image.a_13),
-            14: rule_14(image.a_14),
-            15: rule_15(image.a_15),
-            16: rule_16(image.a_16)}.get(number, "")
+    if number == 4:
+        return rule_4(image.a_4)
+    elif number == 5:
+        return rule_5(image.a_5)
+    elif number == 6:
+        return rule_6(image.a_6)
+    elif number == 7:
+        return rule_7(image.a_7)
+    elif number == 8:
+        return rule_8(image.a_8)
+    elif number == 9:
+        return rule_9(image.a_9)
+    elif number == 10:
+        return rule_10(image.a_10)
+    elif number == 11:
+        return rule_11(image.a_11)
+    elif number == 12:
+        return rule_12(image.a_12)
+    elif number == 13:
+        return rule_13(image.a_13)
+    elif number == 14:
+        return rule_14(image.a_14)
+    else:
+        return rule_15(image.a_15)
