@@ -28,6 +28,6 @@ def analysis_image():
         for evaluationCode in evaluationCodeList:
             set_patient_image(evaluationCode)
             evaluation_result = evaluation(evaluationCode)
-            result.append({'evaluationCode': evaluationCode, 'score': evaluation_result[0], 'total': evaluation_result[2]})
+            result.append({'evaluationCode': evaluationCode, 'scoreList': evaluation_result[0], 'total': evaluation_result[2]})
 
         return jsonify(APIResponse("success", "200", "AI 이미지 분석을 완료 하였습니다.", result))
