@@ -18,9 +18,6 @@ def analysis_image():
         evaluation_code_list = request.form.getlist('evaluationCodeList')
         files = request.files.getlist("files")
 
-        print(request.form.get('evaluationCodeList'))
-        print(evaluation_code_list)
-        print(files)
 
         # 클라이언트로 부터 받은 파일 저장
         save_files(files)

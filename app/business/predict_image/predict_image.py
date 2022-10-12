@@ -72,13 +72,13 @@ def predict_image(image, evaluation_list):
                                              f"./business/predict_image/learning_model/no23_Pytorch_EfficientNet.pth"))
     evaluation_list[20] = map_result(24,
                                      predict(image.a_24,
-                                             f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
+                                             f"./business/predict_image/learning_model/no24_Pytorch_EfficientNet.pth"))
     evaluation_list[21] = map_result(25,
                                      predict(image.a_25,
-                                             f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
+                                             f"./business/predict_image/learning_model/no25_Pytorch_EfficientNet.pth"))
     evaluation_list[22] = map_result(26,
                                      predict(image.a_26,
-                                             f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
+                                             f"./business/predict_image/learning_model/no26_Pytorch_EfficientNet.pth"))
     evaluation_list[23] = map_result(27,
                                      predict(image.a_27,
                                              f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
