@@ -27,3 +27,8 @@ def check_score_list_length(score_list):
         return True
     else:
         return False
+
+
+def map_to_dir(evaluation_code, number) -> str:
+    return "ai_ans/S"+str(evaluation_code)+"_vmi_"+str(number)+".jpg"
+

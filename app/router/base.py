@@ -1,3 +1,5 @@
+import os
+
 from flask import app, Blueprint
 
 blue_print = Blueprint("base", __name__, url_prefix="/")

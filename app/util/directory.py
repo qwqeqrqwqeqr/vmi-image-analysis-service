@@ -5,6 +5,8 @@ from werkzeug.datastructures import ImmutableMultiDict, FileStorage
 from util.constants import ANSWER_IMAGE_DIRECTORY
 
 
+
+
 def create_directory(directory):
     try:
         if not os.path.exists(directory):
@@ -17,3 +19,4 @@ def init_directory(evaluation_code, files : list[ImmutableMultiDict[str, FileSto
     create_directory(ANSWER_IMAGE_DIRECTORY)
     for file in files:
         file.sa
+
