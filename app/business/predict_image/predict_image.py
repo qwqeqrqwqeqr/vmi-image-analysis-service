@@ -84,7 +84,7 @@ def predict_image(image, evaluation_list):
                                              f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
     evaluation_list[24] = map_result(28,
                                      predict(image.a_28,
-                                             f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
+                                             f"./business/predict_image/learning_model/no28_Pytorch_EfficientNet.pth"))
     evaluation_list[25] = map_result(29,
                                      predict(image.a_29,
                                              f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
