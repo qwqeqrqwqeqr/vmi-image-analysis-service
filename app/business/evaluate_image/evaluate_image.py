@@ -20,7 +20,7 @@ def evaluation(evaluation_code):
 
     evaluation_list = evaluation_image_list(image)
 
-    # 채점 결과를 반영한 scorelist 만들기
+    # 채점 결과를 반영한 score_list 만들기
     score_list = init_score_list(evaluation_code, evaluation_list)
 
     # DB에 점수 넣기
@@ -29,7 +29,7 @@ def evaluation(evaluation_code):
     else:
         message = "분석을 실패 하였습니다."
 
-    return map_image_analysis_response_dto(evaluation_list), message
+    return map_image_analysis_response_dto(evaluation_list), message, score_list.total
 
 
 def evaluation_image_list(image) -> list[Evaluation]:

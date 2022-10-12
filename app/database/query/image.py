@@ -8,7 +8,7 @@ from database.query.util import set_image_dir_list, map_to_dir
 
 def get_patient_image(evaluation_code):
     database = Database()
-    query = "SELECT * FROM ans_vmi_dir_crop where eval_code = %s"
+    query = "SELECT * FROM ai_ans_vmi_dir_crop where eval_code = %s"
     result = database.executeOne(query, evaluation_code)
     image = Image(evaluation_code, set_image_dir_list(result))
     database.close()

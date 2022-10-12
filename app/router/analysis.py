@@ -9,6 +9,7 @@ from database.query.image import set_patient_image
 
 from model.api_response import APIResponse
 from util.constants import ANSWER_IMAGE_DIRECTORY
+from util.file import save_files
 
 blue_print = Blueprint("analysis", __name__, url_prefix="/analysis")
 
@@ -20,16 +21,13 @@ def analysis_image():
         evaluationCodeList = request.form.getlist('evaluationCodeList')
         files = request.files.getlist("files")
 
-        for file in files:
-            print(ANSWER_IMAGE_DIRECTORY+"/"+file.filename)
-            file.save(ANSWER_IMAGE_DIRECTORY+"/"+file.filename)
+        # 클라이언트로 부터 받은 파일 저장
+        save_files(files)
 
-        set_patient_image(1)
-
+        #경로를 저장하고 채점을 진행합니다.
         for evaluationCode in evaluationCodeList:
-            result.append({'evaluationCode': evaluationCode, 'score': evaluation(evaluationCode)[0]})
+            set_patient_image(evaluationCode)
+            evaluation_result = evaluation(evaluationCode)
+            result.append({'evaluationCode': evaluationCode, 'score': evaluation_result[0], 'total': evaluation_result[2]})
 
         return jsonify(APIResponse("success", "200", "AI 이미지 분석을 완료 하였습니다.", result))
-
-
-
