@@ -35,6 +35,7 @@ def analysis_image():
         return jsonify(APIResponse("success", "200", "AI 이미지 분석을 완료 하였습니다.", result))
 
 
+#TODO 추후에 GET으로 변경
 @blue_print.route("/patient/image/list/all", methods=["POST"])
 def get_patient_image_list_all():
     if request.method == 'POST':
