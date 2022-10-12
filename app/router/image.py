@@ -16,6 +16,7 @@ def analysis_image():
 
         for evaluation_code in params['evaluationCodeList']:
             number = 4
+            image_list.clear()
             for image in get_patient_image(evaluation_code).get_image_list():
                 image_list.append({'image': image, 'number': number})
                 number += 1
