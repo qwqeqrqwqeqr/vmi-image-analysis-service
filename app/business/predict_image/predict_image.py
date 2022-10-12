@@ -1,5 +1,5 @@
 from business.analysis_image.analysis_image import map_result
-from business.predict_image.predict.predict import predict
+from business.predict_image.predict.predict import predict, default_predict
 from model.evaluation import Evaluation
 
 '''
@@ -81,15 +81,15 @@ def predict_image(image, evaluation_list):
                                              f"./business/predict_image/learning_model/no26_Pytorch_EfficientNet.pth"))
     evaluation_list[23] = map_result(27,
                                      predict(image.a_27,
-                                             f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
+                                             default_predict()))
     evaluation_list[24] = map_result(28,
                                      predict(image.a_28,
                                              f"./business/predict_image/learning_model/no28_Pytorch_EfficientNet.pth"))
     evaluation_list[25] = map_result(29,
                                      predict(image.a_29,
-                                             f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
+                                             f"./business/predict_image/learning_model/no29_Pytorch_EfficientNet.pth"))
     evaluation_list[26] = map_result(30,
                                      predict(image.a_30,
-                                             f"./business/predict_image/learning_model/no21_Pytorch_EfficientNet.pth"))
+                                             default_predict()))
 
     return evaluation_list

@@ -46,3 +46,7 @@ def predict(image_path, model_path):
     else:
         print(PREDICT_SUCCESS_MESSAGE)
         return 1, PREDICT_SUCCESS_MESSAGE
+
+
+def default_predict():
+    return 0, PREDICT_FAIL_MESSAGE
