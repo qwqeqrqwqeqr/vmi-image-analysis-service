@@ -79,17 +79,13 @@ def predict_image(image, evaluation_list):
     evaluation_list[22] = map_result(26,
                                      predict(image.a_26,
                                              f"./business/predict_image/learning_model/no26_Pytorch_EfficientNet.pth"))
-    evaluation_list[23] = map_result(27,
-                                     predict(image.a_27,
-                                             default_predict()))
+    evaluation_list[23] = map_result(27, default_predict())
     evaluation_list[24] = map_result(28,
                                      predict(image.a_28,
                                              f"./business/predict_image/learning_model/no28_Pytorch_EfficientNet.pth"))
     evaluation_list[25] = map_result(29,
                                      predict(image.a_29,
                                              f"./business/predict_image/learning_model/no29_Pytorch_EfficientNet.pth"))
-    evaluation_list[26] = map_result(30,
-                                     predict(image.a_30,
-                                             default_predict()))
+    evaluation_list[26] = map_result(30, default_predict())
 
     return evaluation_list
