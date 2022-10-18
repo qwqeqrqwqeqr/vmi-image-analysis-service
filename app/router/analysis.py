@@ -18,21 +18,20 @@ def analysis_image():
         evaluation_code_list = request.form.getlist('evaluationCodeList')
         files = request.files.getlist("files")
 
-
-        # 클라이언트로 부터 받은 파일 저장
         save_files(files)
+
 
         # 경로를 저장하고 채점을 진행합니다.
         for evaluation_code in evaluation_code_list:
             set_patient_image(evaluation_code)
             evaluation_result = evaluation(evaluation_code)
             result.append(
-                {'evaluationCode': evaluation_code, 'scoreList': evaluation_result[0], 'total': evaluation_result[2]})
+                {'evaluationCode': evaluation_code, 'scoreList': evaluation_result[0], 'total': evaluation_result[2], 'performance': evaluation_result[3]})
 
         return jsonify(APIResponse("success", "200", "AI 이미지 분석을 완료 하였습니다.", result))
 
 
-#TODO 추후에 GET으로 변경
+
 @blue_print.route("/patient/image/list/all", methods=["POST"])
 def get_patient_image_list_all():
     if request.method == 'POST':

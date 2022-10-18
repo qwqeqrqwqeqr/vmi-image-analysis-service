@@ -4,7 +4,7 @@ from model.evaluation import Evaluation
 
 '''
     1번부터 9번 예측 미적용
-    22번부터 30번 현재 gan 작업 중 
+    22번부터 30번 현재 gan 작업 중
 '''
 
 
@@ -25,6 +25,7 @@ def predict_image(image, evaluation_list):
     evaluation_list[4] = map_result(8,
                                      predict(image.a_8,
                                              f"./business/predict_image/learning_model/no8_Pytorch_EfficientNet.pth"))
+
     evaluation_list[5] = map_result(9,
                                      predict(image.a_9,
                                              f"./business/predict_image/learning_model/no9_Pytorch_EfficientNet.pth"))
