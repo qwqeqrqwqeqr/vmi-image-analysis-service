@@ -21,6 +21,7 @@ def get_data(data_dir):
     for img in os.listdir(path):
       try:
         img_arr = cv2.imread(os.path.join(path, img), cv2.IMREAD_GRAYSCALE)
+        #                 img_arr = cv2.imread(os.path.join(path, img), cv2.IMREAD_COLOR)
         resized_arr = cv2.resize(img_arr, (img_size, img_size))  # Reshaping images to preferred size
         resized_arr = resized_arr / 255
         x.append([resized_arr])
@@ -29,8 +30,6 @@ def get_data(data_dir):
         print(e)
 
   return np.array(x), np.array(y)
-
-
 
 class TestDataset():
   def __init__(self, test_x, test_y):
@@ -56,7 +55,10 @@ def get_model_performance(data_loader, vmi_num):
 
   device = 'cpu'
 
-  model = torch.load(f'./business/predict_image/learning_model/no{vmi_num}_Pytorch_EfficientNet.pth')
+  path = os.getcwd()
+  print(path)
+
+  model = torch.load( f"./business/predict_image/learning_model/no{vmi_num}_Pytorch_EfficientNet.pth")
   model = model.to(device)
   model.eval()
 
@@ -88,6 +90,10 @@ def get_model_performance(data_loader, vmi_num):
 
     # Build confusion matrix
     cf_matrix = confusion_matrix(y_real, y_pred)
+
+    # 오류 수정 코드 (추가)
+    if np.array(cf_matrix).shape == (1, 1):
+      continue
 
     one_acc = round((score / batch_size).item(), 5)
 
