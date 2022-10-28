@@ -15,8 +15,14 @@ blue_print = Blueprint("analysis", __name__, url_prefix="/analysis")
 def analysis_image():
     if request.method == 'POST':
         result = []
-        evaluation_code_list = request.form.getlist('evaluationCodeList')
+
+        evaluation_code_list  = request.form.getlist('evaluationCodeList')
+
         files = request.files.getlist("files")
+
+        if len(files)%len(evaluation_code_list) == 0:
+             preprocess_image()
+
 
         save_files(files)
 
