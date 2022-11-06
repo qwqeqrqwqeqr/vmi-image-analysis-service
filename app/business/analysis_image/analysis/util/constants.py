@@ -1,1 +1,0 @@
-DEFAULT_SCORE =1

@@ -34,10 +34,10 @@ def evaluation(evaluation_code):
     else:
         message = "분석을 실패 하였습니다."
 
-    # print("================성능을 측정합니다.================")
-    # performance = get_average_performance_from_model()
+    print("================성능을 측정합니다.================")
+    performance = get_average_performance_from_model()
 
-    return map_image_analysis_response_dto(evaluation_list), message, score_list.total
+    return map_image_analysis_response_dto(evaluation_list), message, score_list.total,performance
 
 
 def evaluation_image_list(image) -> list[Evaluation]:
